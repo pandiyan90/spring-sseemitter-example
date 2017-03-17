@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>.::SSE::.</title>
+    <script>
+        function ev() {
+            var eventSource = new EventSource("//localhost:8080/events");
+            eventSource.addEventListener("ping", function(e) {
+                var newElement = document.createElement("li");
+
+                var obj = JSON.parse(e.data);
+                newElement.innerHTML = "ping at " + obj.time;
+                eventList.appendChild(newElement.data);
+            }, false);
+            eventSource.close();
+        }
+    </script>
+
+</head>
+<body onLoad="javascript: ev()">
+<h1> Server Sent Events </h1>
+</body>
+</html>
